@@ -44,7 +44,7 @@ cmake --build build --config Release
 That's it!
 
 If you want to build the installer you can also run
-
+> ⚠️ This step requires `dotnet` to be present on your system
 ```
 cmake --build build --target prepare_installer --config Release
 ```
