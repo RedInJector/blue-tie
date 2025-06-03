@@ -35,5 +35,10 @@
 .idea
 cmake-build-debug
 cmake-build-release
+build
+out
+.vs
+CMakeFiles
+CMakeCache.txt
 
-/external/discord/
+/external/discord_game_sdk

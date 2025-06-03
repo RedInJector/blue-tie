@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Package Name="BlueTieInstaller" Manufacturer="Ametis_Dev_Team" Version="0.0.3" UpgradeCode="8444091e-8b30-429a-866e-3e036ff7b2ed">
+  <Package Name="Blue Tie" Manufacturer="Ametis_Dev_Team" Version="0.0.5" UpgradeCode="8444091e-8b30-429a-866e-3e036ff7b2ed">
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <MediaTemplate EmbedCab="yes" />
 
-    <StandardDirectory Id="ProgramFilesFolder">
+    <StandardDirectory Id="ProgramFiles6432Folder">
       <Directory Id="INSTALLFOLDER" Name="Blue Tie">
-        <Component Id="MainComponent" Guid="eeeed6e4-e617-46cc-9399-2cd4ae16cbf2">
+        <Component Id="MainComponent" Guid="adaa8fe1-c905-4300-a666-8f1db1ee4bcf">
           <File Id="ExeFile" Source="blue_tie.exe" KeyPath="yes" />
           <File Id="IconFile" Source="blue_tie.ico" />
           <File Id="DataFile" Source="data.tie" />

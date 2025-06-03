@@ -97,6 +97,7 @@ class App {
 
         activity.GetTimestamps().SetStart(activity_start_time_);
         activity.SetDetails(text.c_str());
+        activity.GetAssets().SetLargeText("This is Miku");
         activity.GetAssets().SetLargeImage(image_name.c_str());
 
         discord_core_->ActivityManager().UpdateActivity(activity, [](discord::Result result) {
@@ -135,25 +136,33 @@ public:
         tray_icon_ = TrayIcon::Create();
 
         tray_icon_->SetToolTip("Blue Tie");
-        tray_icon_->AddButton("Exit", [this]() {
-            run_flag_ = false;
-        });
+
         tray_icon_->AddButton("Re-roll", [this]() {
             RollRandomActivity();
         });
+        tray_icon_->AddButton("Exit", [this]() {
+            run_flag_ = false;
+        });
 
         tray_icon_->Show();
+        auto next_check = std::chrono::system_clock::now();
 
         while (run_flag_) {
             std::this_thread::sleep_for(std::chrono::milliseconds(30));
+            auto time_now = std::chrono::system_clock::now();
             if (!discord_core_) {
-                discord_core_ = create_discord_core();
-                if (discord_core_) {
-                    RollRandomActivity();
+                if (time_now >= next_check) {
+                    std::print("Trying to connect to discord\n");
+                    discord_core_ = create_discord_core();
+                    if (discord_core_) {
+                        RollRandomActivity();
+                    } else {
+                        std::print("Can't connect to discord\n");
+                        next_check = time_now + std::chrono::seconds(2);
+                    }
                 }
             }
             if (discord_core_) {
-                auto time_now = std::chrono::system_clock::now();
                 if (time_now >= next_random_time_) {
                     RollRandomActivity();
                 }
