@@ -49,3 +49,7 @@ If you want to build the installer you can also run
 cmake --build build --target prepare_installer --config Release
 ```
 The installer can be found in `installer\bin\Debug`
+
+<div align="center">
+<img width="300" style="image-rendering: pixelated;" alt="header image" src="assets/tie.png">
+</div>
