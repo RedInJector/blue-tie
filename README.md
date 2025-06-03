@@ -51,5 +51,5 @@ cmake --build build --target prepare_installer --config Release
 The installer can be found in `installer\bin\Debug`
 
 <div align="center">
-<img width="300" style="image-rendering: pixelated;" alt="header image" src="assets/tie.png">
+<img width="300" alt="header image" src="assets/tie.png">
 </div>
