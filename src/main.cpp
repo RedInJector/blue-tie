@@ -31,7 +31,6 @@ void set_activity(discord::Core &core) {
 
     activity.SetDetails("blue hair, blue tie");
     activity.GetAssets().SetLargeImage("beam");
-    activity.GetSecrets().SetSpectate("asdsadasdassd");
     activity.SetInstance(true);
 
     core.ActivityManager().UpdateActivity(activity, [](discord::Result result) {

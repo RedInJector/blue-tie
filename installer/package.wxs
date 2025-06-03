@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="BlueTieInstaller" Manufacturer="Ametis_Dev_Team" Version="0.0.1" UpgradeCode="8444091e-8b30-429a-866e-3e036ff7b2ed">
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <StandardDirectory Id="ProgramFilesFolder">
+      <Directory Id="INSTALLFOLDER" Name="Blue Tie">
+        <Component Id="MainComponent" Guid="eeeed6e4-e617-46cc-9399-2cd4ae16cbf2">
+          <File Id="ExeFile" Source="blue_tie.exe" KeyPath="yes" />
+          <File Id="IconFile" Source="blue_tie.ico" />
+          <File Id="DiscordLib" Source="discord_game_sdk.dll" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ApplicationProgramsFolder" Name="Blue Tie">
+        <Component Id="ShortcutComponent" Guid="e0ce3f2b-633b-491d-9c2b-fca48a4c9c18">
+          <Shortcut Id="StartMenuShortcut" 
+                    Name="Blue Tie" 
+                    Target="[INSTALLFOLDER]blue_tie.exe" 
+                    WorkingDirectory="INSTALLFOLDER"
+                    Icon="IconFile" />
+          <RemoveFolder Id="RemoveApplicationProgramsFolder" On="uninstall" />
+          <RegistryValue Root="HKCU" Key="Software\BlueTie" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+
+    <Feature Id="MainFeature" Title="Main Feature" Level="1">
+      <ComponentRef Id="MainComponent" />
+      <ComponentRef Id="ShortcutComponent" />
+    </Feature>
+
+    <Icon Id="IconFile" SourceFile="blue_tie.ico" />
+  </Package>
+</Wix>
